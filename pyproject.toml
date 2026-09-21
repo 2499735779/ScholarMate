@@ -1,0 +1,11 @@
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+"src-tauri/python/tests/conftest.py" = ["E402"]
+"scripts/ui_smoke_server.py" = ["E402"]
+

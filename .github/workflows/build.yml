@@ -1,0 +1,38 @@
+name: Test and desktop installers
+on: [workflow_dispatch]
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            bundle: msi
+          - os: macos-latest
+            bundle: dmg
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: dtolnay/rust-toolchain@stable
+      - run: npm ci
+      - run: python -m pip install -r src-tauri/python/requirements.txt
+      - run: python -m pytest src-tauri/python/tests -q
+      - run: npm test
+      - run: npm run build
+      - run: npm run tauri icon scripts/icon.svg
+      - run: python scripts/build_sidecar.py
+      - run: npm run tauri build -- --bundles ${{ matrix.bundle }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ScholarMate-${{ matrix.os }}
+          path: |
+            src-tauri/target/release/bundle/msi/*.msi
+            src-tauri/target/release/bundle/dmg/*.dmg
+

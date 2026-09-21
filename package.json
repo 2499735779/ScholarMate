@@ -1,0 +1,45 @@
+{
+  "name": "scholarmate",
+  "private": true,
+  "version": "0.10.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "tsc -b && vite build",
+    "tauri": "tauri",
+    "sidecar": "node scripts/desktop.mjs sidecar",
+    "test": "vitest run",
+    "desktop:dev": "node scripts/desktop.mjs dev",
+    "desktop:build": "node scripts/desktop.mjs build",
+    "format": "prettier --write src",
+    "prebuild": "node scripts/copy-pdf-assets.mjs",
+    "predev": "node scripts/copy-pdf-assets.mjs"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.2.0",
+    "@tauri-apps/api": "^2.0.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.468.0",
+    "pdfjs-dist": "5.4.624",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-markdown": "^10.0.0",
+    "react-router-dom": "^7.0.0",
+    "remark-gfm": "^4.0.0",
+    "tailwind-merge": "^3.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "@tauri-apps/cli": "^2.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "prettier": "^3.9.6",
+    "tailwindcss": "^4.0.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.0.0",
+    "vitest": "^3.0.0"
+  }
+}
+

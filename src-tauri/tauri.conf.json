@@ -1,0 +1,53 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "ScholarMate",
+  "version": "0.10.0",
+  "identifier": "com.scholarmate.desktop",
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://127.0.0.1:1420",
+    "beforeBuildCommand": "npm run build",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "ScholarMate",
+        "width": 1240,
+        "height": 860,
+        "minWidth": 620,
+        "minHeight": 600
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src ipc: http://ipc.localhost http://127.0.0.1:*; object-src 'none'; base-uri 'self'; frame-src 'none'; worker-src 'self' blob:"
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "category": "Education",
+    "shortDescription": "Personal academic learning companion",
+    "longDescription": "Local-first academic learning plans, papers, translation and personalized AI conversations.",
+    "externalBin": [
+      "binaries/scholarmate-backend"
+    ],
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ],
+    "windows": {
+      "wix": {
+        "language": "zh-CN"
+      }
+    },
+    "macOS": {
+      "minimumSystemVersion": "11.0",
+      "infoPlist": "Info.plist"
+    }
+  }
+}
+
